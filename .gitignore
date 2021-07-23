@@ -1,0 +1,7 @@
+.idea/
+cmake-build-debug/
+objects/
+.gitignore
+.DS_Store
+CMakeLists.txt
+philo
