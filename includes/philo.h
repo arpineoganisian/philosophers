@@ -10,11 +10,12 @@ pthread_mutex_t	g_lock;
 
 typedef struct	s_philo
 {
-	int	num_of_philo;
-	int	time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int num_of_meals;
+	int				num_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				num_of_meals;
+	struct timeval	current_time;
 }				t_philo;
 
 int	parse(int argc, char **argv, t_philo *philo);

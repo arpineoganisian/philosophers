@@ -14,6 +14,7 @@ int	main(int argc, char **argv)
 	init_data();
 	printf("hop hey la la ley\n");
 	pthread_mutex_destroy(&g_lock);
+	return (EXIT_SUCCESS);
 //	struct timeval current_time;
 //	gettimeofday(&current_time, NULL);
 //	printf("%d\n", current_time.tv_usec);
