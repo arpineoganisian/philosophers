@@ -3,7 +3,7 @@
 int	philo_atoi(const char *str)
 {
 	int	i;
-	int	res;
+	long	res;
 
 	i = 0;
 	res = 0;
@@ -14,6 +14,10 @@ int	philo_atoi(const char *str)
 		else
 			return (-1);
 		i++;
+		if (i > 11)
+            return (-1);
 	}
+	if (res > 2147483647)
+        return  (-1);
 	return (res);
 }

@@ -1,11 +1,5 @@
 #include "philo.h"
 
-int init_data()
-{
-	pthread_mutex_init(&g_lock, NULL);
-	return (EXIT_SUCCESS);
-}
-
 int init_philosophers(t_args *args)
 {
 
@@ -18,12 +12,7 @@ int	main(int argc, char **argv)
 	if (parse(argc, argv, &args) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 
-	init_data();
-
-	while(args.num_of_philo > 0)
-	{
-		args.num_of_philo--;
-	}
+    init_philosophers(&args);
 
 	printf("hop hey la la ley\n");
 
