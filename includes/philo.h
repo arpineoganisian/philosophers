@@ -6,7 +6,8 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-pthread_mutex_t	g_lock;
+pthread_mutex_t g_lock;
+struct timeval  g_current_time;
 
 typedef struct	s_args
 {
@@ -15,10 +16,9 @@ typedef struct	s_args
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_of_meals;
-	struct timeval	current_time;
 }				t_args;
 
-int	parse(int argc, char **argv, t_args *args);
-int	philo_atoi(const char *str);
-
+int     parse(int argc, char **argv, t_args *args);
+int     philo_atoi(const char *str);
+long    get_time(void);
 #endif
