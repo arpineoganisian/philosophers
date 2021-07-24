@@ -1,6 +1,6 @@
 #include "philo.h"
 
-int	num_atoi(const char *str)
+int	philo_atoi(const char *str)
 {
 	int	i;
 	int	res;

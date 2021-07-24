@@ -8,7 +8,7 @@
 
 pthread_mutex_t	g_lock;
 
-typedef struct	s_philo
+typedef struct	s_args
 {
 	int				num_of_philo;
 	int				time_to_die;
@@ -16,9 +16,9 @@ typedef struct	s_philo
 	int				time_to_sleep;
 	int				num_of_meals;
 	struct timeval	current_time;
-}				t_philo;
+}				t_args;
 
-int	parse(int argc, char **argv, t_philo *philo);
-int	num_atoi(const char *str);
+int	parse(int argc, char **argv, t_args *args);
+int	philo_atoi(const char *str);
 
 #endif

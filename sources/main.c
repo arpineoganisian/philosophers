@@ -6,14 +6,29 @@ int init_data()
 	return (EXIT_SUCCESS);
 }
 
+int init_philosophers(t_args *args)
+{
+
+}
+
 int	main(int argc, char **argv)
 {
-	t_philo philo;
-	if (parse(argc, argv, &philo) == EXIT_FAILURE)
+	t_args args;
+
+	if (parse(argc, argv, &args) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+
 	init_data();
+
+	while(args.num_of_philo > 0)
+	{
+		args.num_of_philo--;
+	}
+
 	printf("hop hey la la ley\n");
+
 	pthread_mutex_destroy(&g_lock);
+
 	return (EXIT_SUCCESS);
 //	struct timeval current_time;
 //	gettimeofday(&current_time, NULL);
