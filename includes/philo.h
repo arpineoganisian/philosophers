@@ -18,7 +18,14 @@ typedef struct	s_args
 	int				num_of_meals;
 }				t_args;
 
+typedef struct	s_philo
+{
+    int         thread_num;
+    pthread_t   thread;
+
+}				t_philo;
+
 int     parse(int argc, char **argv, t_args *args);
-int     philo_atoi(const char *str);
 long    get_time(void);
+void    eating(void *arg);
 #endif

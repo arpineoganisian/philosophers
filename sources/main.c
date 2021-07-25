@@ -1,10 +1,10 @@
 #include "philo.h"
 
-int init_philosophers(t_args *args)
-{
-    (void)args;
-    return (0);
-}
+//int init_philosophers(t_args *args)
+//{
+//    (void)args;
+//    return (0);
+//}
 
 int	main(int argc, char **argv)
 {
@@ -14,9 +14,7 @@ int	main(int argc, char **argv)
 	if (parse(argc, argv, args) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 
-    init_philosophers(args);
-
-	printf("%ld\n", get_time());
+//    init_philosophers(args);
 
 	pthread_mutex_destroy(&g_lock);
     free(args);

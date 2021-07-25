@@ -1,5 +1,27 @@
 #include "philo.h"
 
+int	philo_atoi(const char *str)
+{
+    int	i;
+    long	res;
+
+    i = 0;
+    res = 0;
+    while (str[i])
+    {
+        if (str[i] >= '0' && str[i] <= '9')
+            res = res * 10 + (str[i] - '0');
+        else
+            return (-1);
+        i++;
+        if (i > 11)
+            return (-1);
+    }
+    if (res > 2147483647)
+        return  (-1);
+    return (res);
+}
+
 int	init_args(char **argv, t_args *args)
 {
 	args->num_of_philo = philo_atoi(argv[1]);
