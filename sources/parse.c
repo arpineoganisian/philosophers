@@ -30,6 +30,8 @@ int	init_args(char **argv, t_args *args)
 	args->time_to_sleep = philo_atoi(argv[4]);
 	if (argv[5])
 		args->num_of_meals = philo_atoi(argv[5]);
+	else
+		args->num_of_meals = 0;
 	if (args->num_of_philo == -1 || args->time_to_die == -1
 		|| args->time_to_eat == -1 || args->time_to_sleep  == -1
 		|| ((argv[5]) && args->num_of_meals == -1))
