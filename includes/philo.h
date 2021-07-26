@@ -14,6 +14,7 @@ typedef struct	s_args
 	int				time_to_sleep;
 	int				num_of_meals;
 	short			death;
+	long 			start_time;
 }				t_args;
 
 typedef struct	s_philo
@@ -23,7 +24,6 @@ typedef struct	s_philo
     t_args			*args;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t *right_fork;
-	short			death;
 }				t_philo;
 
 int     parse(int argc, char **argv, t_args *args);
