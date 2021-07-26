@@ -19,9 +19,11 @@ typedef struct	s_args
 
 typedef struct	s_philo
 {
-    int         thread_num;
-    pthread_t   thread;
-    int 		time_to_eat;
+    int         	thread_num;
+    pthread_t   	thread;
+    int 			time_to_eat;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t *right_fork;
 
 }				t_philo;
 

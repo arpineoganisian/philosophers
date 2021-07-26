@@ -12,6 +12,11 @@ t_philo **init_philosophers(t_args *args)
 		philo[i] = (t_philo *)malloc(sizeof(t_philo));
 		philo[i]->thread_num = i + 1;
 		philo[i]->time_to_eat = args->time_to_eat;
+		philo[i]->left_fork = malloc(sizeof(pthread_mutex_t));
+		if (i != args->num_of_philo - 1)
+			philo[i]->right_fork = philo[i + 1]->left_fork;
+		else
+
 		i++;
 	}
     return (philo);
