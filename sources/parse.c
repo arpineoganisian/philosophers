@@ -17,7 +17,7 @@ int	philo_atoi(const char *str)
         if (i > 11)
             return (-1);
     }
-    if (res > 2147483647)
+    if (res > 2147483647 || res == 0)
         return  (-1);
     return (res);
 }

@@ -7,7 +7,6 @@
 # include <unistd.h>
 
 pthread_mutex_t g_lock;
-struct timeval  g_current_time;
 
 typedef struct	s_args
 {
@@ -22,10 +21,11 @@ typedef struct	s_philo
 {
     int         thread_num;
     pthread_t   thread;
+    int 		time_to_eat;
 
 }				t_philo;
 
 int     parse(int argc, char **argv, t_args *args);
 long    get_time(void);
-void    eating(void *arg);
+void	start_dinner(t_args *args, t_philo **philo);
 #endif
