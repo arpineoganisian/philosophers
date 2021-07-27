@@ -8,33 +8,37 @@ void	dying(t_philo *philo)
 
 void	thinking(t_philo *philo)
 {
-	int	time_for_thinking;
+	long	time_left;
 
-	time_for_thinking = philo->args->time_to_die - philo->args->time_to_eat
-		- philo->args->time_to_sleep;
-	printf("🗿 %ld - %d is thinking\n",
-		get_time() - philo->args->start_time, philo->thread_num);
-	if (time_for_thinking < 0)
+	time_left = philo->start_of_dinner + philo->args->time_to_die
+		- (get_time() - philo->args->start_time - philo->args->time_to_sleep);
+	if (time_left < 0)
 	{
 		philo->args->death = 1;
 		dying(philo);
 	}
 	else
-		usleep(time_for_thinking * 1000);
+	{
+		printf("🗿 %ld - %d is thinking\n",
+			get_time() - philo->args->start_time, philo->thread_num);
+		usleep(time_left * 1000);
+	}
 }
 
 void	sleeping(t_philo *philo)
 {
-	int	time_left;
+	long	time_left;
 
-	time_left = get_time() - philo->start_of_dinner;
-	printf("💤 %ld - %d is sleeping\n",
-		get_time() - philo->args->start_time, philo->thread_num);
+	time_left = philo->start_of_dinner + philo->args->time_to_die
+		- (get_time() - philo->args->start_time);
+	if (time_left > 0)
+		printf("💤 %ld - %d is sleeping\n",
+			get_time() - philo->args->start_time, philo->thread_num);
 	if (time_left < philo->args->time_to_sleep)
 	{
 		philo->args->death = 1;
-		usleep(time_left);
 		dying(philo);
+		usleep(time_left * 1000);
 	}
 	else
 		usleep(philo->args->time_to_sleep * 1000);
@@ -42,7 +46,13 @@ void	sleeping(t_philo *philo)
 
 void	eating(t_philo *philo)
 {
-
+	if (philo->start_of_dinner + philo->args->time_to_die
+		== get_time() - philo->args->start_time)
+	{
+		philo->args->death = 1;
+		dying(philo);
+		return;
+	}
 	pthread_mutex_lock(philo->left_fork);
 	printf("🍴 %ld - %d has taken a left fork\n",
 		get_time() - philo->args->start_time, philo->thread_num);
