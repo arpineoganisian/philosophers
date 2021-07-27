@@ -42,6 +42,7 @@ int	init_args(char **argv, t_args *args)
 	args->start_time = get_time();
 	args->death = 0;
 	args->finished = 0;
+	args->print = 0;
 	return (EXIT_SUCCESS);
 }
 

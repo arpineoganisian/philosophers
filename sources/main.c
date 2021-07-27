@@ -39,6 +39,7 @@ int	terminate(t_args *args, t_philo **philo)
 	return (EXIT_SUCCESS);
 }
 
+
 int	main(int argc, char **argv)
 {
 	t_args	*args;
@@ -49,12 +50,13 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	philo = init_philosophers(args);
 	if (args->num_of_philo == 1)
-		start_one(args, philo);
+		pthread_create(&philo[0]->thread, NULL, start_one, (void *)philo[0]);
 	else
 		start_many(args, philo);
 	while (1)
 	{
 		if (args->death || args->finished == args->num_of_philo)
 			return (terminate(args, philo));
+//			return (EXIT_SUCCESS);
 	}
 }
