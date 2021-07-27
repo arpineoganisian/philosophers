@@ -24,20 +24,24 @@ int	philo_atoi(const char *str)
 
 int	init_args(char **argv, t_args *args)
 {
-	args->start_time = get_time();
 	args->num_of_philo = philo_atoi(argv[1]);
 	args->time_to_die = philo_atoi(argv[2]);
 	args->time_to_eat = philo_atoi(argv[3]);
 	args->time_to_sleep = philo_atoi(argv[4]);
 	if (argv[5])
+	{
 		args->num_of_meals = philo_atoi(argv[5]);
+		args->fifth = 0;
+	}
 	else
-		args->num_of_meals = 0;
+		args->fifth = 1;
 	if (args->num_of_philo == -1 || args->time_to_die == -1
 		|| args->time_to_eat == -1 || args->time_to_sleep == -1
 		|| ((argv[5]) && args->num_of_meals == -1))
 		return (EXIT_FAILURE);
+	args->start_time = get_time();
 	args->death = 0;
+	args->finished = 0;
 	return (EXIT_SUCCESS);
 }
 

@@ -22,20 +22,21 @@ t_philo	**init_philosophers(t_args *args)
 	return (philo);
 }
 
-//void	init_all_data(t_args *args)
-//{
-//}
-
-void	join_threads(t_args *args, t_philo **philo)
+int	terminate(t_args *args, t_philo **philo)
 {
 	int	i;
 
 	i = 0;
 	while (i < args->num_of_philo)
 	{
-		pthread_join(philo[i]->thread, NULL);
+		pthread_mutex_destroy(philo[i]->left_fork);
+		free(philo[i]->left_fork);
+		free(philo[i]);
 		i++;
 	}
+	free(args);
+	free(philo);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -46,14 +47,14 @@ int	main(int argc, char **argv)
 	args = (t_args *)malloc(sizeof(t_args));
 	if (parse(argc, argv, args) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-//	init_all_data(args);
 	philo = init_philosophers(args);
-	start_all(args, philo);
-	while(1)
+	if (args->num_of_philo == 1)
+		start_one(args, philo);
+	else
+		start_many(args, philo);
+	while (1)
 	{
-		if (args->death)
-			return (EXIT_SUCCESS);
+		if (args->death || args->finished == args->num_of_philo)
+			return (terminate(args, philo));
 	}
-//	join_threads(args, philo);
-	return (EXIT_SUCCESS);
 }
