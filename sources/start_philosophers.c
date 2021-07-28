@@ -22,7 +22,7 @@ void	*treads(void *philo)
 
 	i = 0;
 	tmp = (t_philo *)philo;
-	while (tmp->args->fifth || i < tmp->args->num_of_meals)
+	while (!tmp->args->death && (tmp->args->fifth || i < tmp->args->num_of_meals))
 	{
 		eating(tmp);
 		sleeping(tmp);

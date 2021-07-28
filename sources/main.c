@@ -39,6 +39,17 @@ int	terminate(t_args *args, t_philo **philo)
 	return (EXIT_SUCCESS);
 }
 
+//void join_threads(t_args *args, t_philo **philo)
+//{
+//	int 	i;
+//
+//	i = 0;
+//	while (i < args->num_of_philo)
+//	{
+//		pthread_join(philo[i]->thread, NULL) ;
+//		i++;
+//	}
+//}
 
 int	main(int argc, char **argv)
 {
@@ -53,10 +64,11 @@ int	main(int argc, char **argv)
 		pthread_create(&philo[0]->thread, NULL, start_one, (void *)philo[0]);
 	else
 		start_many(args, philo);
+//	join_threads(args, philo);
 	while (1)
 	{
 		if (args->death || args->finished == args->num_of_philo)
-			return (terminate(args, philo));
-//			return (EXIT_SUCCESS);
+//			return (terminate(args, philo));
+			return (EXIT_SUCCESS);
 	}
 }

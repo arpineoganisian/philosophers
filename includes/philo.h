@@ -18,6 +18,7 @@ typedef struct s_args
 	int				finished;
 	long			start_time;
 	short			print;
+	pthread_t		observer;
 }				t_args;
 
 typedef struct s_philo
