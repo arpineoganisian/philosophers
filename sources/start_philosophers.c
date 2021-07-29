@@ -6,7 +6,7 @@ void	*start_one(void *philo)
 
 	tmp = (t_philo *)philo;
 	pthread_mutex_lock(tmp->left_fork);
-	printf("🍴 %ld - %d has taken a left fork\n",
+	printf(" %ld - %d has taken a left fork 🍴 \n",
 		   get_time() - tmp->args->start_time, tmp->thread_num);
 	fixed_usleep(tmp->args->time_to_die);
 	pthread_mutex_unlock(tmp->left_fork);
@@ -46,8 +46,16 @@ void	start_many(t_args *args, t_philo **philo)
 	i = 0;
 	while (i < args->num_of_philo)
 	{
+		if (i == 0 || i % 2 == 0)
 		pthread_create(&philo[i]->thread, NULL, treads, (void *)philo[i]);
 		i++;
-		usleep(40);
+	}
+	i = 0;
+	usleep(40);
+	while (i < args->num_of_philo)
+	{
+		if (i % 2 == 1)
+			pthread_create(&philo[i]->thread, NULL, treads, (void *)philo[i]);
+		i++;
 	}
 }
