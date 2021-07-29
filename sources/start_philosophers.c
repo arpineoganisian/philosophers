@@ -47,7 +47,7 @@ void	start_many(t_args *args, t_philo **philo)
 	while (i < args->num_of_philo)
 	{
 		if (i == 0 || i % 2 == 0)
-		pthread_create(&philo[i]->thread, NULL, treads, (void *)philo[i]);
+			pthread_create(&philo[i]->thread, NULL, treads, (void *)philo[i]);
 		i++;
 	}
 	i = 0;
