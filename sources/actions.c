@@ -47,8 +47,6 @@ void	eating(t_philo *philo)
 	philo_message(get_time() - philo->args->start_time, philo->thread_num,
 				  "is eating 🍝", philo->args->death);
 	fixed_usleep(philo->args->time_to_eat);
-	philo_message(get_time() - philo->args->start_time, philo->thread_num,
-				  "drops forks 🙌", philo->args->death);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }

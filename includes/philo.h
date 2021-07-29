@@ -18,7 +18,7 @@ typedef struct s_args
 	int				finished;
 	long			start_time;
 	short			print;
-	pthread_t		observer;
+	pthread_mutex_t	fin;
 }				t_args;
 
 typedef struct s_philo
@@ -29,6 +29,7 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	long			start_of_dinner;
+	int				num_of_meals;
 }				t_philo;
 
 int		parse(int argc, char **argv, t_args *args);

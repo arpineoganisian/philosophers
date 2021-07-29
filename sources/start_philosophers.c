@@ -18,18 +18,18 @@ void	*start_one(void *philo)
 void	*treads(void *philo)
 {
 	t_philo	*tmp;
-	int		i;
 
-	i = 0;
 	tmp = (t_philo *)philo;
-	while (!tmp->args->death && (tmp->args->fifth || i < tmp->args->num_of_meals))
+	while (!tmp->args->death
+		&& (tmp->args->fifth || tmp->args->finished != tmp->args->num_of_philo))
 	{
 		eating(tmp);
 		sleeping(tmp);
 		thinking(tmp);
-		i++;
+		pthread_mutex_lock(&tmp->args->fin);
+		tmp->num_of_meals--;
+		pthread_mutex_unlock(&tmp->args->fin);
 	}
-	tmp->args->finished++;
 	return (NULL);
 }
 
