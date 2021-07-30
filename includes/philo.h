@@ -41,4 +41,6 @@ void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
 void	dying(t_philo *philo);
+void    *observe_death(void *philo);
+void    *observe_num_of_meals(void *philo);
 #endif

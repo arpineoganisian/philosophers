@@ -2,7 +2,7 @@ NAME		= philo
 
 HEADER_DIR	= includes
 
-SRCS_LIST	= main.c parse.c time_utils.c actions.c start_philosophers.c
+SRCS_LIST	= main.c parse.c time_utils.c actions.c start_philosophers.c threads_observers.c
 SRCS		= $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))
 SRCS_DIR	= sources
 

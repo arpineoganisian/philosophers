@@ -40,31 +40,6 @@ void	terminate(t_args *args, t_philo **philo)
 	free(philo);
 }
 
-void	philoop(t_args	*args, t_philo	**philo)
-{
-	int	i;
-
-	i = 0;
-	while (1)
-	{
-		if (philo[i]->num_of_meals == 0)
-			args->finished++;
-		if ((get_time() - args->start_time
-				> philo[i]->start_of_dinner + args->time_to_die)
-			|| args->finished == args->num_of_philo)
-		{
-			if (args->finished != args->num_of_philo)
-				dying(philo[i]);
-			terminate(args, philo);
-			return ;
-		}
-		if (i == args->num_of_philo - 1)
-			i = 0;
-		else
-			i++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_args	*args;
@@ -75,10 +50,11 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	philo = init_philosophers(args);
 	pthread_mutex_init(&args->fin, NULL);
-	if (args->num_of_philo == 1)
-		pthread_create(&philo[0]->thread, NULL, start_one, (void *)philo[0]);
-	else
-		start_many(args, philo);
-	philoop(args, philo);
+    if (args->num_of_philo == 1)
+        pthread_create(&philo[0]->thread, NULL, start_one, (void *)philo[0]);
+    else
+        start_many(args, philo);
+    pthread_create(&philo[0]->thread, NULL, thread, (void *)philo[0]);
+    pthread_create(&philo[0]->thread, NULL, start_one, (void *)philo[0]);
 	return (EXIT_SUCCESS);
 }
