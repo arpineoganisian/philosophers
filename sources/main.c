@@ -50,12 +50,17 @@ void	philoop(t_args	*args, t_philo	**philo)
 		if (philo[i]->num_of_meals == 0)
 			args->finished++;
 		if ((get_time() - args->start_time
-				> philo[i]->start_of_dinner + args->time_to_die)
-			|| args->finished == args->num_of_philo)
+				> philo[i]->start_of_dinner + args->time_to_die))
 		{
-			if (args->finished != args->num_of_philo)
-				dying(philo[i]);
+			dying(philo[i]);
 			terminate(args, philo);
+			args->fifth = 5;
+			return ;
+		}
+		if (args->finished == args->num_of_philo && args->fifth != 5)
+		{
+			terminate(args, philo);
+			args->death = 1;
 			return ;
 		}
 		if (i == args->num_of_philo - 1)

@@ -26,7 +26,7 @@ $(OBJ_DIR):
 clean:
 	$(RM) $(OBJ)
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(OBJ_DIR)
 re: fclean all
 
 .PHONY: clean fclean all re
