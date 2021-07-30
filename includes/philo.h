@@ -19,6 +19,10 @@ typedef struct s_args
 	long			start_time;
 	short			print;
 	pthread_mutex_t	fin;
+	pthread_t		died;
+	pthread_t		ended;
+
+
 }				t_args;
 
 typedef struct s_philo
@@ -41,4 +45,6 @@ void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
 void	dying(t_philo *philo);
+void    *observe_death(void *philo);
+void    *observe_num_of_meals(void *philo);
 #endif

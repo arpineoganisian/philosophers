@@ -20,8 +20,7 @@ void	*treads(void *philo)
 	t_philo	*tmp;
 
 	tmp = (t_philo *)philo;
-	while (!tmp->args->death
-		&& (tmp->args->fifth || tmp->args->finished != tmp->args->num_of_philo))
+	while (!tmp->args->death)
 	{
 		eating(tmp);
 		sleeping(tmp);

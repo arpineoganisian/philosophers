@@ -40,33 +40,15 @@ void	terminate(t_args *args, t_philo **philo)
 	free(philo);
 }
 
-void	philoop(t_args	*args, t_philo	**philo)
+void join_threads(t_args *args, t_philo **philo)
 {
-	int	i;
+	int 	i;
 
 	i = 0;
-	while (1)
+	while (i < args->num_of_philo)
 	{
-		if (philo[i]->num_of_meals == 0)
-			args->finished++;
-		if ((get_time() - args->start_time
-				> philo[i]->start_of_dinner + args->time_to_die))
-		{
-			dying(philo[i]);
-			terminate(args, philo);
-			args->fifth = 5;
-			return ;
-		}
-		if (args->finished == args->num_of_philo && args->fifth != 5)
-		{
-			terminate(args, philo);
-			args->death = 1;
-			return ;
-		}
-		if (i == args->num_of_philo - 1)
-			i = 0;
-		else
-			i++;
+		pthread_join(philo[i]->thread, NULL);
+		i++;
 	}
 }
 
@@ -81,9 +63,16 @@ int	main(int argc, char **argv)
 	philo = init_philosophers(args);
 	pthread_mutex_init(&args->fin, NULL);
 	if (args->num_of_philo == 1)
+	{
 		pthread_create(&philo[0]->thread, NULL, start_one, (void *)philo[0]);
+	}
 	else
+	{
 		start_many(args, philo);
-	philoop(args, philo);
+		pthread_create(&args->ended, NULL, observe_num_of_meals, (void *)philo);
+		pthread_create(&args->died, NULL, observe_death, (void *)philo);
+	}
+	join_threads(args, philo);
+	terminate(args, philo);
 	return (EXIT_SUCCESS);
 }
