@@ -1,8 +1,9 @@
-.idea/
 cmake-build-debug/
-objects/
-.DS_Store
 CMakeLists.txt
-philo
 .gitignore
-test
+.idea/
+objects/
+objects/
+philo
+test/
+.DS_Store

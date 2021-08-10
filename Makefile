@@ -2,7 +2,8 @@ NAME		= philo
 
 HEADER_DIR	= includes
 
-SRCS_LIST	= main.c parse.c time_utils.c actions.c start_philosophers.c threads_observers.c
+SRCS_LIST	= main.c actions_of_philosopthers.c monitoring_threads.c \
+			parse.c run_philosophers.c time_utils.c
 SRCS		= $(addprefix $(SRCS_DIR)/, $(SRCS_LIST))
 SRCS_DIR	= sources
 
@@ -11,7 +12,7 @@ OBJ 		= $(addprefix $(OBJ_DIR)/, $(OBJ_LIST))
 OBJ_DIR		= objects
 
 CC			= gcc
-CFLAGS		= -g -Wall -Werror -Wextra
+CFLAGS		= -g -Wall -Werror -Wextra -pthread
 
 RM			= rm -rf
 
